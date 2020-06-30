@@ -100,7 +100,78 @@ namespace EFGetStarted
                       Console.WriteLine("\n");
                      }
 
-            
+                Console.WriteLine("Ввести вручную, y/n?");   
+        if (Console.ReadLine() == "y")  
+            {          
+//  Ввод и вывод по команде ............................................
+                Console.WriteLine("Ввести учители - 1;");
+                Console.WriteLine("Ввести ученика - 2;");
+                string ind;
+                ind = Console.ReadLine();
+                if (ind == "1")
+                  {
+                      string TeacherName, TeacherSurname, TeacherAge, TeacherGender, TeacherSalary, TeacherCar, TeacherMinCost, TeacherMaxCost;
+                      Console.Write("Имя:  ");
+                      TeacherName = Console.ReadLine();
+                      Console.Write("Фамилия:  ");
+                      TeacherSurname = Console.ReadLine();
+                      Console.Write("Возраст:  ");
+                      TeacherAge = Console.ReadLine();
+                      Console.Write("Пол:  ");
+                      TeacherGender = Console.ReadLine();
+                      Console.Write("Зарплата:  ");
+                      TeacherSalary = Console.ReadLine();
+                      Console.Write("Машина:  ");
+                      TeacherCar = Console.ReadLine();
+                      Console.Write("Мин. ценник репетиторства:  ");
+                      TeacherMinCost = Console.ReadLine();
+                      Console.Write("Макс. ценник репетиторства:  ");
+                      TeacherMaxCost = Console.ReadLine();
+                      
+                      Console.Write("Сохранить, y/n?  ");
+                      string save = Console.ReadLine();
+                      if (save == "y") 
+                        {
+                            Teacher NewTeacher = new Teacher {Name = TeacherName, Surname = TeacherSurname, Age = Convert.ToInt32(TeacherAge), Gender = TeacherGender};
+                            db.Persons.Add(NewTeacher);
+                            db.SaveChanges();
+                            Console.WriteLine("Учитель добавлен");
+                        }
+
+                  }
+                else
+                  {
+                      string StudentName, StudentSurname, StudentAge, StudentGender, StudentFatherWork, StudentFatherSalaru, StudentMatherWork, StudentMatherSalaru;
+                      Console.Write("Имя:  ");
+                      StudentName = Console.ReadLine();
+                      Console.Write("Фамилия:  ");
+                      StudentSurname = Console.ReadLine();
+                      Console.Write("Возраст:  ");
+                      StudentAge = Console.ReadLine();
+                      Console.Write("Пол:  ");
+                      StudentGender = Console.ReadLine();
+                      Console.Write("Работа отца:  ");
+                      StudentFatherWork = Console.ReadLine();
+                      Console.Write("Зарплата отца:  ");
+                      StudentFatherSalaru = Console.ReadLine();
+                      Console.Write("Работа матери:  ");
+                      StudentMatherWork = Console.ReadLine();
+                      Console.Write("Зарплата матери:  ");
+                      StudentMatherSalaru = Console.ReadLine();
+
+                      Console.Write("Сохранить, y/n?  ");
+                      string save = Console.ReadLine();
+                      if (save == "y") 
+                        {
+                            Student NewStudent = new Student {Name = StudentName, Surname = StudentSurname, Age = Convert.ToInt32(StudentAge), Gender = StudentGender};
+                            db.Persons.Add(NewStudent);
+                            db.SaveChanges();
+                            Console.WriteLine("Ученик добавлен");
+                        }
+                  }
+
+            }      
+
 
 
                }

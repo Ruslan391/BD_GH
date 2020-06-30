@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EFGetStarted
 {
-    public class Person
+    public class Person         ///   родительский класс Person, таблица Persons 
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -13,7 +13,7 @@ namespace EFGetStarted
     public string Discriminator { get; set; }
 }
 
-    public class Teacher : Person
+    public class Teacher : Person         ///   дочерний класс Teacher, таблица Persons 
 {
     public int Salaru { get; set; } // ЗП
     public string Car { get; set; }
@@ -26,10 +26,10 @@ namespace EFGetStarted
     }
 }
 
- public class Student : Person
+ public class Student : Person         ///   дочерний класс , таблица Persons 
 {
     public string FatherSWork { get; set; } // Работа отца
-    public int FatherSSalaru { get; set; } // ЗП отца
+    public int FatherSalaru { get; set; } // ЗП отца
     public string MatherSWork { get; set; } // Работа матери
     public int MatherSalaru { get; set; } // ЗП матери
     public Group Group { get; set; } // связь с классом Group, один ко многим, студент в одной группе
