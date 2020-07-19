@@ -99,11 +99,17 @@ namespace EFGetStarted
                       foreach (Person s in students) Console.Write($" {s.Name} ");
                       Console.WriteLine("\n");
                      }
-
-                Console.WriteLine("Ввести вручную, y/n?");   
-        if (Console.ReadLine() == "y")  
+                Console.WriteLine("Продолжить? 1 - нет, выйти, 2 - продолжить");  
+if (Console.ReadLine() == "1") {Environment.Exit(0);} 
+else
+    {               
+        Console.WriteLine("Ввести: вручную - 1, редактировать - 2");   
+        if (Console.ReadLine() == "1")  
             {          
+            int i = 0;   
 //  Ввод и вывод по команде ............................................
+            while (i == 0)
+              {
                 Console.WriteLine("Ввести учители - 1;");
                 Console.WriteLine("Ввести ученика - 2;");
                 string ind;
@@ -169,8 +175,37 @@ namespace EFGetStarted
                             Console.WriteLine("Ученик добавлен");
                         }
                   }
-
-            }      
+                 Console.WriteLine("Продолжить? 1 - нет, выйти, 2 - ввести ещё, 3 - продолжить");
+                 i=1;
+                 string qqq =  Console.ReadLine();
+                 if (qqq == "1") {Environment.Exit(0);}
+                 else if (qqq == "2") {i=0;}
+                 else i=1;
+              }
+            }
+        else  /// удаление___________________________________________________
+            {
+               Console.WriteLine(" 1 - удаленить учитель, 2 - удалить ученика");
+               if (Console.ReadLine() == "1")
+                  {
+                   Console.Write("Имя учитель:  "); 
+                   Person TeacherDel = (from Id_t in db.Persons where (Id_t.Name == Console.ReadLine() && Id_t.Discriminator == "Teacher")  select Id_t).First();
+                  // int i = (from Id_t in db.Persons where (Id_t.Name == Console.ReadLine() && Id_t.Discriminator == "Teacher")  select Id_t).First();
+                   Console.WriteLine($"{TeacherDel.Name}");
+                   db.Persons.Remove(TeacherDel);
+                   db.SaveChanges();
+                  }
+               else
+                  {
+                   Console.Write("Имя ученика:  "); 
+                   Person StudentDel = (from Id_t in db.Persons where (Id_t.Name == Console.ReadLine() && Id_t.Discriminator == "Student")  select Id_t).First();
+                  // int i = (from Id_t in db.Persons where (Id_t.Name == Console.ReadLine() && Id_t.Discriminator == "Teacher")  select Id_t).First();
+                   Console.WriteLine($"{StudentDel.Name}");
+                   db.Persons.Remove(StudentDel);
+                   db.SaveChanges();
+                  }  
+            }
+    }      
 
 
 
